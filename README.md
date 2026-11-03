@@ -642,6 +642,6 @@ grep '^API_KEY=' .env | awk -F= '{print "API_KEY length:", length($2)}'
 - 服务默认只监听 `127.0.0.1`，不要直接暴露 Node 端口，统一走 Nginx。
 - 如需进一步限制来源，可在 Nginx 中配置 `allow` / `deny`。
 - 下载直链本身不经过本服务鉴权，若文件敏感，请在 OpenList 侧启用签名或访问控制。
-- SHA256 缓存目录只允许服务用户读写。
-#   l p s e r v e r  
+- SHA256 缓存目录只允许服务用户读写。 
+ 
  
