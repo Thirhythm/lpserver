@@ -1,0 +1,26 @@
+[Unit]
+Description=lpserver file download and SHA256 API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=user000
+Group=user000
+WorkingDirectory=/opt/lpserver
+EnvironmentFile=/opt/lpserver/.env
+Environment=NODE_ENV=production
+ExecStart=/usr/bin/node /opt/lpserver/dist/index.js
+Restart=on-failure
+RestartSec=5
+
+# OpenList files must be readable by the service user. The SHA256 cache is
+# written to ./data, so that directory must exist and be writable.
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/opt/lpserver/data
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
